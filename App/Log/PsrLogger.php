@@ -18,10 +18,8 @@ class PsrLogger
     public function addRecord($level, $message, $context)
     {
         if (file_exists($this->path) && is_writable($this->path)) {
-            $err['level'] = $level;
-            $err['message'] = $message;
-            $allErr = array_merge($err, $context);
-            $strContext = implode("\r\n", $allErr) . "\r\n" . '__________' . "\r\n";
+            $context = ['level' => $level, 'message' => $message, ] + $context;
+            $strContext = implode("\r\n", $context) . "\r\n" . '__________' . "\r\n";
             file_put_contents($this->path, $strContext, FILE_APPEND);
         }
     }
