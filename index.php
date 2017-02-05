@@ -27,7 +27,11 @@ try {
 
 } catch (\App\Exception\ExceptionDB $error) {
     $log = new \App\Log\PsrLogger(__DIR__ . '/exceptionLog.txt');
-    $log->log('emergency', $error->getMessage(), [$error->getTrace()]);
+    $context['code'] = $error->getCode();
+    $context['line'] = $error->getLine();
+    $context['file'] = $error->getFile();
+    $context['trace'] = $error->getTraceAsString();
+    $log->log('emergency', $error->getMessage(),$context);
     $view = new \App\View();
     $view->error = $error;
     $view->view(__DIR__ . '/template/error.php');

@@ -21,7 +21,6 @@ class PsrLogger
             $err['level'] = $level;
             $err['message'] = $message;
             $allErr = array_merge($err, $context);
-            var_dump($allErr);
             $strContext = implode("\r\n", $allErr) . "\r\n" . '__________' . "\r\n";
             file_put_contents($this->path, $strContext, FILE_APPEND);
         }
