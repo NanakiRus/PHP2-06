@@ -24,6 +24,16 @@ class PsrLogger
         }
     }
 
+    public static function getArrErr(\Exception $err)
+    {
+        $context['code'] = $err->getCode();
+        $context['line'] = $err->getLine();
+        $context['file'] = $err->getFile();
+        $context['trace'] = $err->getTraceAsString();
+
+        return $context;
+    }
+
     /**
      * Logs with an arbitrary level.
      *
