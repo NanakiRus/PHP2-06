@@ -18,7 +18,7 @@ class PsrLogger
     public function addRecord($level, $message, $context)
     {
         if (file_exists($this->path) && is_writable($this->path)) {
-            $context = ['level' => $level, 'message' => $message, ] + $context;
+            $context = ['level' => 'Уровень ошибки: ' . $level, 'message' => 'Сообщение: ' . $message,] + $context;
             $strContext = implode("\r\n", $context) . "\r\n" . '__________' . "\r\n";
             file_put_contents($this->path, $strContext, FILE_APPEND);
         }
@@ -26,10 +26,10 @@ class PsrLogger
 
     public static function getArrErr(\Exception $err)
     {
-        $context['code'] = $err->getCode();
-        $context['line'] = $err->getLine();
-        $context['file'] = $err->getFile();
-        $context['trace'] = $err->getTraceAsString();
+        $context['code'] = 'Код: ' . $err->getCode();
+        $context['line'] = 'Строка: ' . $err->getLine();
+        $context['file'] = 'В файле: ' . $err->getFile();
+        $context['trace'] = 'Trace: ' . $err->getTraceAsString();
 
         return $context;
     }

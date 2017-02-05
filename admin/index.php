@@ -25,6 +25,9 @@ try {
 
 } catch (\App\Exception\Exception404 $error) {
 
+    $log = new \App\Log\PsrLogger(__DIR__ . '/../exceptionLog.txt');
+    $log->emergency($error->getMessage(), \App\Log\PsrLogger::getArrErr($error));
+
     header("HTTP/1.0 404 Not Found");
     die;
 
