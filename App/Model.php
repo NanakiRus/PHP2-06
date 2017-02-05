@@ -19,7 +19,7 @@ abstract class Model
     public static function findAll()
     {
         $db = new Db();
-        $sql = 'SELECT * FROM11 ' . static::$table;
+        $sql = 'SELECT * FROM ' . static::$table;
         return $db->query($sql, [], static::class);
     }
 
