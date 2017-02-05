@@ -31,7 +31,7 @@ try {
     $context['line'] = $error->getLine();
     $context['file'] = $error->getFile();
     $context['trace'] = $error->getTraceAsString();
-    $log->log('emergency', $error->getMessage(),$context);
+    $log->emergency($error->getMessage(),$context);
     $view = new \App\View();
     $view->error = $error;
     $view->view(__DIR__ . '/template/error.php');
